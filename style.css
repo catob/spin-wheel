@@ -109,3 +109,5 @@ a { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   .flash, .flash.show, .flash-text, .flash.show .flash-text { transition: none; }
 }
+
+.field { margin-bottom: 24px; }

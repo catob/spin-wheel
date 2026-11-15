@@ -12,7 +12,7 @@
 <body>
 <main class="split">
   <section class="center" aria-label="Wheel">
-    <h1>Spin Wheel</h1>
+    <h1 id="wheel-title">Spin Wheel</h1>
     <div class="stage">
       <canvas id="wheel" width="800" height="800" role="img" aria-label="Spinning wheel with your options"></canvas>
       <div class="pointer" aria-hidden="true"></div>
@@ -21,6 +21,10 @@
     <p id="result" class="result" role="status" aria-live="polite"></p>
   </section>
   <section aria-label="Options">
+    <div class="field">
+      <label for="title">Wheel title</label>
+      <input id="title" type="text" value="Spin Wheel" maxlength="60" autocomplete="off">
+    </div>
     <form id="add-form" class="row">
       <div style="flex:1">
         <label for="new-option">Add an option</label>

@@ -10,6 +10,8 @@
     input: document.getElementById('new-option'),
     removeWinner: document.getElementById('remove-winner'),
     error: document.getElementById('error'),
+    title: document.getElementById('title'),
+    heading: document.getElementById('wheel-title'),
   };
   const wheel = window.createWheel(els.canvas, options);
 
@@ -62,6 +64,10 @@
     } else {
       els.spin.disabled = false;
     }
+  });
+
+  els.title.addEventListener('input', () => {
+    els.heading.textContent = els.title.value.trim() || 'Spin Wheel';
   });
 
   render();
