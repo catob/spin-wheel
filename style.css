@@ -111,3 +111,15 @@ a { color: var(--accent); }
 }
 
 .field { margin-bottom: 24px; }
+
+/* Heading that doubles as an editable title */
+.center h1 { width: 100%; }
+h1 .title-input {
+  width: 100%; max-width: 100%;
+  font: inherit; letter-spacing: inherit; color: inherit; text-align: center;
+  background: transparent; border: 0; border-bottom: 2px dashed transparent;
+  border-radius: 8px; padding: 4px 8px;
+  text-overflow: ellipsis;
+}
+h1 .title-input:hover { border-bottom-color: var(--border); }
+h1 .title-input:focus-visible { border-bottom-color: transparent; }

@@ -66,9 +66,15 @@
     }
   });
 
-  els.title.addEventListener('input', () => {
-    els.heading.textContent = els.title.value.trim() || 'Spin Wheel';
-  });
+  // Heading and form field edit the same title; keep them in sync.
+  function bindTitle(source, other) {
+    source.addEventListener('input', () => {
+      other.value = source.value;
+      document.title = source.value.trim() || 'Spin Wheel';
+    });
+  }
+  bindTitle(els.title, els.heading);
+  bindTitle(els.heading, els.title);
 
   render();
 })();
