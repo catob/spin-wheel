@@ -24,6 +24,6 @@
     result.textContent = 'Stay';
     aside.textContent = quips[spins++ % quips.length];
     spin.disabled = false;
-    spin.textContent = 'Spin again (it won’t change)';
+    spin.textContent = 'Spin again';
   });
 })();
