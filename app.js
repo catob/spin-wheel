@@ -55,6 +55,7 @@
     els.result.textContent = '';
     const index = await wheel.spinRandom();
     els.result.textContent = options[index];
+    window.flashResult(options[index]);
     if (els.removeWinner.checked) {
       options.splice(index, 1);
       setTimeout(render, 1200);

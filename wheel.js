@@ -1,6 +1,15 @@
 // Reusable wheel: drawing + spin animation. No DOM outside the given canvas.
 (function () {
-  const COLORS = ['#e76f51', '#f4a261', '#e9c46a', '#2a9d8f', '#264653', '#8ab17d', '#b56576', '#6d597a'];
+  // Slice fill + a label colour that keeps contrast on that fill.
+  const SLICES = [
+    { bg: '#5b3df5', fg: '#ffffff' },
+    { bg: '#ffc247', fg: '#2a1f00' },
+    { bg: '#ff5d73', fg: '#ffffff' },
+    { bg: '#2ec4b6', fg: '#06312d' },
+    { bg: '#3a86ff', fg: '#ffffff' },
+    { bg: '#ff9ecb', fg: '#3d0a24' },
+  ];
+  const FONT = '"Bricolage Grotesque", system-ui, sans-serif';
   const TAU = Math.PI * 2;
 
   function createWheel(canvas, labels) {
@@ -22,22 +31,32 @@
         ctx.moveTo(c, c);
         ctx.arc(c, c, radius, start, start + arc);
         ctx.closePath();
-        ctx.fillStyle = COLORS[i % COLORS.length];
+        // Avoid two touching slices sharing a colour when the count wraps.
+        const slice = SLICES[(i + (i === items.length - 1 && items.length % SLICES.length === 1 ? 2 : 0)) % SLICES.length];
+        ctx.fillStyle = slice.bg;
         ctx.fill();
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgba(255,255,255,0.85)';
+        ctx.lineWidth = 3;
         ctx.stroke();
         ctx.save();
         ctx.translate(c, c);
         ctx.rotate(start + arc / 2);
-        ctx.fillStyle = '#fff';
-        ctx.font = 'bold ' + Math.round(size / 20) + 'px system-ui, sans-serif';
+        ctx.fillStyle = slice.fg;
+        ctx.font = '700 ' + Math.round(size / 18) + 'px ' + FONT;
         ctx.textAlign = 'right';
         ctx.textBaseline = 'middle';
         const text = label.length > 16 ? label.slice(0, 15) + '…' : label;
-        ctx.fillText(text, radius - 16, 0);
+        ctx.fillText(text, radius - size / 14, 0);
         ctx.restore();
       });
+      // Hub
+      ctx.beginPath();
+      ctx.arc(c, c, size / 22, 0, TAU);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = '#5b3df5';
+      ctx.stroke();
     }
 
     // Angle (radians) where slice `index` is centred under the top pointer.
@@ -79,6 +98,8 @@
     function isSpinning() { return spinning; }
 
     draw();
+    // Redraw once the web font is ready so labels use it.
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
     return { spinTo, spinRandom, setLabels, isSpinning };
   }
 

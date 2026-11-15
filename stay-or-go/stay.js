@@ -22,6 +22,7 @@
     aside.textContent = '';
     await wheel.spinTo(STAY, { duration: 6000, turns: 7 });
     result.textContent = 'Stay';
+    window.flashResult('Stay');
     aside.textContent = quips[spins++ % quips.length];
     spin.disabled = false;
     spin.textContent = 'Spin again';
