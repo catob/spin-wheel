@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stay Put</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+  <section class="center" aria-label="Wheel">
+    <h1>Should I stay or go home?</h1>
+    <div class="stage">
+      <canvas id="wheel" width="800" height="800" role="img" aria-label="Wheel with two options: Go Home and Stay"></canvas>
+      <div class="pointer" aria-hidden="true"></div>
+    </div>
+    <button id="spin" type="button">Let fate decide</button>
+    <p id="result" class="result" role="status" aria-live="polite"></p>
+    <p id="aside" class="muted" role="status" aria-live="polite"></p>
+  </section>
+</main>
+<script src="../wheel.js"></script>
+<script src="stay.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spin Wheel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="split">
+  <section class="center" aria-label="Wheel">
+    <h1>Spin Wheel</h1>
+    <div class="stage">
+      <canvas id="wheel" width="800" height="800" role="img" aria-label="Spinning wheel with your options"></canvas>
+      <div class="pointer" aria-hidden="true"></div>
+    </div>
+    <button id="spin" type="button">Spin</button>
+    <p id="result" class="result" role="status" aria-live="polite"></p>
+  </section>
+  <section aria-label="Options">
+    <form id="add-form" class="row">
+      <div style="flex:1">
+        <label for="new-option">Add an option</label>
+        <input id="new-option" type="text" maxlength="40" autocomplete="off">
+      </div>
+      <button type="submit" style="align-self:flex-end">Add</button>
+    </form>
+    <ul id="options" class="options"></ul>
+    <div class="row">
+      <label class="row" style="font-weight:400;margin:0;align-items:center">
+        <input id="remove-winner" type="checkbox"> Remove winner after spin
+      </label>
+    </div>
+    <p id="error" class="muted" role="alert"></p>
+  </section>
+</main>
+<script src="wheel.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
